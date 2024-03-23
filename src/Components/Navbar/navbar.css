@@ -1,0 +1,121 @@
+.navbar {
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-icon {
+    display: none;
+    /* Hide menu icon by default */
+    cursor: pointer;
+    color: #fed700;
+    font-size: 1.5rem;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+
+}
+.nav-menu .active{
+    text-decoration: underline;
+    color: #fed700;
+}
+
+.nav-menu li {
+    margin-right: 1rem;
+    position: relative;
+    
+}
+
+.nav-menu li:last-child {
+    margin-right: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+    font-size: 14px;
+}
+.nav-menu a:hover{
+    color: #fed700;
+    transition: .4s;
+}
+/* dropdown menu */
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    /* Position it below the parent link */
+    left: 0;
+    right: 0;
+    z-index: 1;
+    /* Ensure it appears above other content */
+    background-color: #333;
+    padding: 1rem;
+    width: 200px;
+}
+
+.dropdown-menu li {
+    display: block;
+    border: none;
+    border-left: 0;
+    padding: 0.5rem 0;
+}
+
+.dropdown-menu a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.nav-menu li:hover .dropdown-menu {
+    display: block;
+    /* Show dropdown menu on hover */
+}
+
+
+
+/*    Resposive Small screen     */
+
+@media screen and (max-width: 768px) {
+    .menu-icon {
+        display: block;
+        /* Show menu icon for smaller screens */
+    }
+
+    .nav-menu {
+        display: none;
+        /* Hide menu items by default for smaller screens */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        /* Adjust top position based on navbar height */
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 1rem;
+    }
+
+    .nav-menu.active {
+        display: flex;
+        /* Show menu items when menu is active */
+    }
+
+    .nav-menu li {
+        margin: 0;
+        padding: 0.5rem 0;
+        text-align: center;
+    }
+
+    .nav-menu a {
+        color: #fff;
+    }
+}
