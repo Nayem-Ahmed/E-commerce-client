@@ -28,7 +28,7 @@ const Banner = () => {
                 }}
                 modules={[Autoplay, Pagination]}
                 className="mySwiper">
-                <SwiperSlide  style={{ backgroundImage: `url('${banner1}')`, backgroundSize: 'cover', backgroundPosition: 'center ', padding: '150px 0' }}>
+                <SwiperSlide style={{ backgroundImage: `url('${banner1}')`, backgroundSize: 'cover', backgroundPosition: 'center ', padding: '150px 0' }}>
                     <div className='flex'>
                         <div className="text-overlay md:basis-5/12  text-center">
                             <p className=" text-lg  mb-3">It has Finally started…</p>
@@ -41,10 +41,11 @@ const Banner = () => {
 
                     </div>
                 </SwiperSlide>
-                <SwiperSlide style={{ backgroundImage: `url('${banner2}')`, backgroundSize: 'cover',backgroundPosition: 'center ', padding: '150px 0' }}>
+                <SwiperSlide style={{ backgroundImage: `url('${banner2}')`, backgroundSize: 'cover', padding: '150px 0' }}>
                     <div className="text-overlay text-center">
-                        <p className=" text-lg  mb-3">Summer Fashion Trends</p>
+                        <p className=" text-lg mb-3">Summer Fashion Trends</p>
                         <h1 className="md:text-5xl font-bold mb-4">BIG SALE UP TO</h1>
+                        <h2 className='text-6xl font-bold mb-3'>80%</h2>
                         <button className="bg-transparent text-black md:px-6 md:py-2 p-2 ml-2 rounded-md border border-black hover:bg-black hover:text-white">SHOP MEN</button>
                         <button className="bg-transparent text-black md:px-6 md:py-2 p-2 ml-2 rounded-md border border-black hover:bg-black hover:text-white">SHOP WOMEN</button>
                     </div>

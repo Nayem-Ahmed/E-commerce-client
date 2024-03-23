@@ -39,13 +39,13 @@ const Navbar = () => {
                         <div className='flex items-center'>
                             <IoCartOutline className='text-2xl'>
                             </IoCartOutline>
-                            <span className='relative -mt-8 bg-[#fed700] h-5 w-5 rounded-full text-center leading-[20px]'>0</span>
+                            <span className='relative -mt-8 bg-[#eb2f06] text-white h-5 w-5 rounded-full text-center leading-[20px]'>0</span>
 
                         </div>
                     </Link></li>
 
                     <Link to='/login' onClick={closeMenu}>
-                        <button className="font-semibold py-2 px-5 rounded-3xl border">
+                        <button className="font-semibold py-2 px-5 rounded-3xl border border-black ">
                             LOGIN
                         </button>
                     </Link>

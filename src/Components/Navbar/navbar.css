@@ -13,7 +13,7 @@
     display: none;
     /* Hide menu icon by default */
     cursor: pointer;
-    color: #fed700;
+    color: #eb2f06;
     font-size: 1.5rem;
 }
 
@@ -25,7 +25,7 @@
 }
 .nav-menu .active{
     text-decoration: underline;
-    color: #fed700;
+    color: #eb2f06;
 }
 
 .nav-menu li {
@@ -45,7 +45,7 @@
     font-size: 14px;
 }
 .nav-menu a:hover{
-    color: #fed700;
+    color: #eb2f06;
     transition: .4s;
 }
 /* dropdown menu */
