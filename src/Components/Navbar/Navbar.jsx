@@ -19,7 +19,7 @@ const Navbar = () => {
     };
 
     return (
-        <nav className="navbar z-50 relative shadow-md">
+        <nav className="navbar z-50 relative shadow-sm block">
             <div className="navbar-container">
                 <div className="navbar-logo">
                     <Link to="/"><img className='max-w-44 h-10' src={logo} alt="Logo" /></Link>
