@@ -5,8 +5,7 @@ const NewCollections = () => {
     return (
         <div className='p-5'>
             <h1 className='text-center text-4xl font-medium my-8'>NEW COLLECTIONS</h1>
-            <hr/>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
                 {newCollection?.map(collection => (
                     <div key={collection.id} className="bg-white rounded-lg shadow-md overflow-hidden">
                         <img src={collection?.image} alt={collection?.name} className="h-64 w-full object-cover" />

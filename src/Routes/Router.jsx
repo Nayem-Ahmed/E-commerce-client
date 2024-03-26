@@ -4,6 +4,10 @@ import ErrorPage from "../Pages/ErrorPage";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
+import Shop from "../Pages/Shop";
+import Men from "../Pages/Men";
+import Women from "../Pages/Women";
+import Kid from "../Pages/Kid";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +18,22 @@ const router = createBrowserRouter([
             {
                 path:'/',
                 element:<Home></Home>,
+            },
+            {
+                path:'/shop',
+                element:<Shop></Shop>,
+            },
+            {
+                path:'/men',
+                element: <Men></Men>,
+            },
+            {
+                path:'/women',
+                element: <Women></Women>,
+            },
+            {
+                path:'/kids',
+                element: <Kid></Kid>,
             },
             {
                 path:'/login',

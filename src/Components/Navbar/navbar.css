@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
     background-color: #fff;
     padding: 1rem;
 }
@@ -7,13 +7,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
 }
 
 .menu-icon {
     display: none;
-    /* Hide menu icon by default */
-    cursor: pointer;
+     cursor: pointer;
     color: #eb2f06;
     font-size: 1.5rem;
 }
@@ -24,7 +23,8 @@
     align-items: center;
 
 }
-.nav-menu .active{
+
+.nav-menu .active {
     text-decoration: underline;
     color: #eb2f06;
 }
@@ -32,7 +32,7 @@
 .nav-menu li {
     margin-right: 1rem;
     position: relative;
-    
+
 }
 
 .nav-menu li:last-child {
@@ -45,21 +45,19 @@
     font-weight: 500;
     font-size: 14px;
 }
-.nav-menu a:hover{
+
+.nav-menu a:hover {
     color: #eb2f06;
     transition: .4s;
 }
-/* dropdown menu */
 
 .dropdown-menu {
     display: none;
     position: absolute;
     top: 100%;
-    /* Position it below the parent link */
     left: 0;
     right: 0;
     z-index: 1;
-    /* Ensure it appears above other content */
     background-color: #333;
     padding: 1rem;
     width: 200px;
@@ -79,26 +77,21 @@
 
 .nav-menu li:hover .dropdown-menu {
     display: block;
-    /* Show dropdown menu on hover */
 }
 
 
 
-/*    Resposive Small screen     */
 
 @media screen and (max-width: 768px) {
     .menu-icon {
         display: block;
-        /* Show menu icon for smaller screens */
     }
 
     .nav-menu {
         display: none;
-        /* Hide menu items by default for smaller screens */
         flex-direction: column;
         position: absolute;
         top: 100%;
-        /* Adjust top position based on navbar height */
         left: 0;
         width: 100%;
         background-color: #333;
@@ -107,7 +100,6 @@
 
     .nav-menu.active {
         display: flex;
-        /* Show menu items when menu is active */
     }
 
     .nav-menu li {
@@ -118,5 +110,130 @@
 
     .nav-menu a {
         color: #fff;
+    }
+} */
+
+
+
+
+/* Navbar styles */
+
+.navbar {
+    background-color: #fff;
+    padding: 1rem;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-icon {
+    display: none;
+    cursor: pointer;
+    color: #eb2f06;
+    font-size: 1.5rem;
+}
+
+.nav-menu {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+.nav-menu .active {
+    text-decoration: underline;
+    color: #eb2f06;
+}
+
+.nav-menu li {
+    margin-right: 1rem;
+}
+
+.nav-menu li:last-child {
+    margin-right: 0;
+}
+
+.nav-menu a {
+    text-decoration: none;
+    color: #111;
+    font-weight: 500;
+    font-size: 14px;
+}
+.nav-menu a:hover {
+    color: #eb2f06;
+    transition: .4s;
+}
+
+/* Search input styles */
+
+.search-container {
+    position: relative;
+}
+
+.search-input {
+    padding: 0.4rem 1rem;
+    border: 1px solid #ccc;
+    border-radius:0.2rem;
+    width: 250px;
+}
+
+/* Login button styles */
+
+.login-link {
+    text-decoration: none;
+}
+
+/* Responsive styles */
+
+@media screen and (max-width: 768px) {
+    .menu-icon {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+        padding: 1rem;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        margin: 0;
+        padding: 0.5rem 0;
+        text-align: center;
+    }
+
+    .nav-menu a {
+        color: #fff;
+    }
+
+    /* Adjustments for the search input */
+    .search-container {
+ 
+        text-align: center;
+    }
+
+    .search-input {
+        width: 100%;
+        max-width: 300px; /* Adjust as needed */
+    }
+
+    /* Adjustments for the login button */
+    .login-link {
+ 
+        text-align: center;
+    }
+
+    .login-link button {
+        width: 100%;
     }
 }
