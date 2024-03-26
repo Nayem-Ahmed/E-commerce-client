@@ -24,10 +24,10 @@ const Men = () => {
             <h2>Men's Products</h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center p-5 my-5">
                 {menProducts?.map(men => (
-                    <div key={men.id} className="bg-white shadow-md overflow-hidden">
-                        <img src={men?.image} alt={ men?.name} className=" w-full object-cover" />
+                    <div key={men.id} className="bg-white hover:shadow-lg overflow-hidden">
+                        <img src={men?.image} alt={men?.name} className=" w-full object-cover" />
                         <div className="p-4">
-                            <h2 className="text-lg  text-gray-800 mb-2">{men?.name}</h2>
+                            <h2 className="text-md  text-gray-800 mb-2">{men?.name.length > 30 ? `${men?.name.slice(0, 39)}...` : men?.name}</h2>
                             <div className="flex justify-between items-center mb-4">
                                 <span className="text-lg text-gray-700">${men?.new_price}</span>
                                 {men?.old_price && (

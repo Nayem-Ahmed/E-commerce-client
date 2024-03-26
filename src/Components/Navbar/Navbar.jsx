@@ -61,10 +61,6 @@
 
 
 
-
-
-
-
 import React, { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
@@ -116,8 +112,6 @@ const Navbar = () => {
                     <li><NavLink to="/men" onClick={closeMenu}>MEN</NavLink></li>
                     <li><NavLink to="/women" onClick={closeMenu}>WOMEN</NavLink></li>
                     <li><NavLink to="/kids" onClick={closeMenu}>KIDS</NavLink></li>
-                    <li><NavLink to="/blog" onClick={closeMenu}>BLOG</NavLink></li>
-                    <li><NavLink to="/contactus" onClick={closeMenu}>CONTACT US</NavLink></li>
                 </ul>
                     < Link to="/cart" onClick={closeMenu}>
                         <div className='flex items-center'>

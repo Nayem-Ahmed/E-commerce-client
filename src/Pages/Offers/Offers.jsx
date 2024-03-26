@@ -1,6 +1,7 @@
 import React from 'react';
 import exclusive from '../../assets/exclusive_image.png';
 import bg from '../../assets/off_bg.png';
+import exclusive2 from '../../assets/exclu.png';
 
 
 const Offers = () => {
@@ -14,7 +15,7 @@ const Offers = () => {
 
                 </div>
                 <div className=" ">
-                    <img className='w-72' src={exclusive} alt="Exclusive" />
+                    <img className='w-80' src={exclusive2} alt="Exclusive" />
                 </div>
             </div>
 
