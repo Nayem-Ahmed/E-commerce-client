@@ -9,6 +9,7 @@ import Men from "../Pages/Men";
 import Women from "../Pages/Women";
 import Kid from "../Pages/Kid";
 import MenDetails from "../Pages/ProductsDetails/MenDetails";
+import Privetroute from "./Privetroute";
 
 const router = createBrowserRouter([
     {
@@ -31,7 +32,7 @@ const router = createBrowserRouter([
             {
                 path:'/men_details/:id',
                 loader:({params})=> fetch(`http://localhost:5000/allproducts/${params.id}`),
-                element:<MenDetails></MenDetails>,
+                element:<Privetroute><MenDetails></MenDetails></Privetroute>,
             },
             {
                 path:'/women',

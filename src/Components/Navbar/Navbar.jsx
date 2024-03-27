@@ -68,8 +68,10 @@ import './navbar.css';
 import logo from '../../assets/e-logo.png';
 import { IoPersonOutline } from "react-icons/io5";
 import { IoCartOutline } from "react-icons/io5";
+import useAuth from '../../API/useAuth';
 
 const Navbar = () => {
+    const {logOut} = useAuth();
     const [isOpen, setIsOpen] = useState(false);
     const [searchQuery, setSearchQuery] = useState('');
 
@@ -124,7 +126,7 @@ const Navbar = () => {
 
                 {/* Login Button */}
                 <Link to='/login' onClick={closeMenu} className="login-link">
-                    <button className="font-semibold md:py-2 py-1 px-2 flex items-center gap-1 md:px-5 rounded-3xl border border-black ">
+                    <button onClick={logOut} className="font-semibold md:py-2 py-1 px-2 flex items-center gap-1 md:px-5 rounded-3xl border border-black ">
                         <IoPersonOutline className='md:text-xl'></IoPersonOutline> LOGIN
                     </button>
                 </Link>

@@ -1,18 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { toast } from 'react-toastify';
+import useAuth from '../API/useAuth';
 
 const Login = () => {
+    const { signIn } = useAuth();
+    const navigate = useNavigate();
+    const location = useLocation()
     const handleSubmit = async (e) => {
         e.preventDefault();
+            const email = e.target.email.value
+            const password = e.target.password.value
         try {
-            const formData = {
-                email: e.target.email.value,
-                password: e.target.password.value
-            };
+            const user = await signIn(email, password);
+            toast.success('Login successfully!')
+            navigate(location?.state ? location.state : '/');
 
-            console.log('Form submitted:', formData);
         } catch (error) {
             console.error('Error occurred while handling form submission:', error);
 
@@ -21,7 +25,7 @@ const Login = () => {
 
     const googleLogin = async () => {
         try {
-            console.log('ddddddddd');
+            console.log(' ');
 
         } catch (error) {
             toast.error(error.message);

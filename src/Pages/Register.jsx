@@ -1,25 +1,32 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
 import useAuth from '../API/useAuth';
- 
+import { imgUpload } from '../API/imgbb';
+
 const Register = () => {
-    const {user} = useAuth() ;
+    const { createUser, updateUserProfile } = useAuth();
+    const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const name = e.target.name.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+        const avatar = e.target.avatar.files[0];
         try {
-            const formData = {
-                name: e.target.name.value,
-                email: e.target.email.value,
-                password: e.target.password.value,
-                avatar: e.target.avatar.files[0] // Access the selected file
-
-            };
-            console.log(formData);
+            const user = await createUser(email, password);
+            // Assuming imgUpload is a function that handles image upload
+            const imageData = await imgUpload(avatar);
+            console.log(imageData);
+            // Update user profile with additional data (name, photo, etc.
+            await updateUserProfile(name, imageData?.data?.url);
+            toast.success('User registered successfully!');
+            navigate('/');
 
         } catch (error) {
-            console.error('Error occurred while handling form submission:', error);
+            toast.error(error.message);
 
         }
     };
