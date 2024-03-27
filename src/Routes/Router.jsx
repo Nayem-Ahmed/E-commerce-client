@@ -8,6 +8,7 @@ import Shop from "../Pages/Shop";
 import Men from "../Pages/Men";
 import Women from "../Pages/Women";
 import Kid from "../Pages/Kid";
+import MenDetails from "../Pages/ProductsDetails/MenDetails";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,11 @@ const router = createBrowserRouter([
             {
                 path:'/men',
                 element: <Men></Men>,
+            },
+            {
+                path:'/men_details/:id',
+                loader:({params})=> fetch(`http://localhost:5000/allproducts/${params.id}`),
+                element:<MenDetails></MenDetails>,
             },
             {
                 path:'/women',
