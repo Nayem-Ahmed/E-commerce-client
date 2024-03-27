@@ -1,11 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { FcGoogle } from 'react-icons/fc';
-import { AuthContext } from '../Providers/AuthProviders';
-
+import useAuth from '../API/useAuth';
+ 
 const Register = () => {
-    const { createUser } = useContext(AuthContext);
+    const {user} = useAuth() ;
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

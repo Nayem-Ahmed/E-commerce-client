@@ -22,7 +22,6 @@ const Men = () => {
 
     return (
         <div>
-            <h2>Men's Products</h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center p-5 my-5">
                 {menProducts?.map(men => (
                     <Link to={`/men_details/${men._id}`} key={men.id} className="bg-white hover:shadow-lg overflow-hidden">
