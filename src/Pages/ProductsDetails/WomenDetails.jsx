@@ -4,9 +4,13 @@ import { CiHeart } from 'react-icons/ci';
 import { FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 import Women from '../Women';
+import { toast } from 'react-toastify';
+import { addCart } from '../../API/products';
+import useAuth from '../../API/useAuth';
 
 const WowomenDetails = () => {
     const womenDetails = useLoaderData();
+    const {user} = useAuth();
  
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('S');
@@ -28,11 +32,12 @@ const WowomenDetails = () => {
                 ...detailsWithoutId,
                 size: selectedSize,
                 quantity: quantity,
+                email:user?.email,
             }
             await addCart(addCartData)
             toast.success('Item added to cart successfully!')
         } catch (error) {
-            toast.error('Error occurred while handling form submission:', error);
+            toast.error(error.message);
         }
     };
     const toggleShareOptions = () => {

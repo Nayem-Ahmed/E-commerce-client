@@ -6,9 +6,11 @@ import { AiOutlineShareAlt } from 'react-icons/ai';
 import Men from '../Men';
 import { addCart } from '../../API/products';
 import { toast } from 'react-toastify';
+import useAuth from '../../API/useAuth';
 
 const MenDetails = () => {
     const menDetails = useLoaderData();
+    const {user} = useAuth();
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('S');
     const [showShareOptions, setShowShareOptions] = useState(false);
@@ -29,11 +31,12 @@ const MenDetails = () => {
                 ...detailsWithoutId,
                 size: selectedSize,
                 quantity: quantity,
+                email:user?.email,
             }
             await addCart(addCartData)
             toast.success('Item added to cart successfully!')
         } catch (error) {
-            toast.error('Error occurred while handling form submission:', error);
+            toast.error( error.message);
         }
     };
     const toggleShareOptions = () => {
