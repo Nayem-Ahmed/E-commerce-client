@@ -69,11 +69,24 @@ import logo from '../../assets/e-logo.png';
 import { IoPersonOutline, IoLogOutOutline, IoCartOutline } from "react-icons/io5";
 import useAuth from '../../API/useAuth';
 import { MdArrowDropDown } from "react-icons/md";
+import { getCartData } from '../../API/products';
+import { useQuery } from 'react-query';
+import Loader from '../Loader/Loader';
 
 
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
+
+
+    const { data: cartData, isLoading, isError, refetch } = useQuery({
+        queryKey: ['cartData', user?.email],
+        queryFn: async () => getCartData(user?.email),
+    });
+    refetch();
+
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div>Error occurred while fetching cart data</div>;
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -98,41 +111,41 @@ const Navbar = () => {
                 </ul>
                 <div className='flex items-center gap-5'>
 
-                {user?.email ?
-                    <div className="header-menu">
-                        <ul>
-                            <li>
-                                <div className='flex items-center cursor-pointer'>
-                                    <img className='rounded-full w-8 border' src={user?.photoURL} alt="" />
-                                    <span className='text-sm'>Hello, {user?.email && user.email.slice(0, user.email.indexOf('@')).slice(0, 10)}...</span>
-                                    <span><MdArrowDropDown></MdArrowDropDown></span>
-                                </div>
+                    {user?.email ?
+                        <div className="header-menu">
+                            <ul>
+                                <li>
+                                    <div className='flex items-center cursor-pointer'>
+                                        <img className='rounded-full w-8 border' src={user?.photoURL} alt="" />
+                                        <span className='text-sm'>Hello, {user?.email && user.email.slice(0, user.email.indexOf('@')).slice(0, 10)}...</span>
+                                        <span><MdArrowDropDown></MdArrowDropDown></span>
+                                    </div>
 
-                                <ul className="dropdown-menu md:w-40 shadow-md">
-                                    <li><Link to="#">My Wishlist</Link></li>
-                                    <li><Link to="#">My Oders</Link></li>
-                                    <li><Link to="#">My Reviews</Link></li>
-                                    <li><Link><button onClick={logOut} className='flex items-center gap-1' type='button'><IoLogOutOutline></IoLogOutOutline>Logout</button></Link></li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </div>
-                    :
-                    <Link to='/login' onClick={closeMenu} className="login-link">
-                        <button onClick={logOut} className="font-semibold md:py-2 py-1 px-2 flex items-center gap-1 md:px-5 rounded-3xl border border-black ">
-                            <IoPersonOutline className='md:text-xl' /> LOGIN
-                        </button>
+                                    <ul className="dropdown-menu md:w-40 shadow-md">
+                                        <li><Link to="#">My Wishlist</Link></li>
+                                        <li><Link to="#">My Oders</Link></li>
+                                        <li><Link to="#">My Reviews</Link></li>
+                                        <li><Link><button onClick={logOut} className='flex items-center gap-1' type='button'><IoLogOutOutline></IoLogOutOutline>Logout</button></Link></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                        :
+                        <Link to='/login' onClick={closeMenu} className="login-link">
+                            <button onClick={logOut} className="font-semibold md:py-2 py-1 px-2 flex items-center gap-1 md:px-5 rounded-3xl border border-black ">
+                                <IoPersonOutline className='md:text-xl' /> LOGIN
+                            </button>
+                        </Link>
+                    }
+                    <Link to="/cart" onClick={closeMenu}>
+                        <div className='flex items-center'>
+                            <IoCartOutline className='text-2xl' />
+                            <span className='relative -mt-5 bg-[#eb2f06] text-white h-4 w-4 rounded-full text-center leading-[16px] '>  {cartData?.length > 0 ? cartData?.length : ''}</span>
+                        </div>
                     </Link>
-                }
-                <Link to="/cart" onClick={closeMenu}>
-                    <div className='flex items-center'>
-                        <IoCartOutline className='text-2xl' />
-                        <span className='relative -mt-8 bg-[#eb2f06] text-white h-5 w-5 rounded-full text-center leading-[20px]'>0</span>
+                    <div className={`menu-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                        {isOpen ? <FaTimes /> : <FaBars />}
                     </div>
-                </Link>
-                <div className={`menu-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
-                    {isOpen ? <FaTimes /> : <FaBars />}
-                </div>
                 </div>
             </div>
         </nav>

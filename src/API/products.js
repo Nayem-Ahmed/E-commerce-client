@@ -15,3 +15,8 @@ export const getCartData = async (email) => {
     const { data } = await axiosPublice(`/addcart/${email}`)
     return data;
 }
+//Delete  add cart
+export const deleteCart  = async (deletecart) => {
+    const { deletedata } = await axiosPublice.delete(`/addcart/${deletecart}`)
+    return deletedata;
+}
