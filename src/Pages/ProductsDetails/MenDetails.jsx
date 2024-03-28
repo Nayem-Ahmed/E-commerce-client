@@ -4,7 +4,7 @@ import { FaHeart, FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import { CiHeart } from "react-icons/ci";
 import { AiOutlineShareAlt } from 'react-icons/ai';
 import Men from '../Men';
-import { addCart } from '../../API/products';
+import { AddWishlistPost, addCart } from '../../API/products';
 import { toast } from 'react-toastify';
 import useAuth from '../../API/useAuth';
 import { FacebookShareButton, FacebookShareCount, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
@@ -45,6 +45,21 @@ const MenDetails = () => {
     };
     const toggleShareOptions = () => {
         setShowShareOptions(!showShareOptions);
+    };
+    const handleWishlist = async() => {
+        try {
+            const { _id, ...detailsWithoutId } = menDetails;
+            const addWishlist = {
+                ...detailsWithoutId,
+                quantity: quantity,
+                email:user?.email,
+            }
+            await AddWishlistPost(addWishlist)
+            toast.success('Item added to cart successfully!')
+        } catch (error) {
+            toast.error(error.message);
+        }
+        
     };
 
     return (
@@ -97,7 +112,7 @@ const MenDetails = () => {
                                         </div>
                                     )}
                                 </div>
-                                <CiHeart className='text-2xl'></CiHeart>
+                                <button onClick={handleWishlist}><CiHeart className='text-2xl'></CiHeart></button>
                             </div>
                         </div>
                         <div className="flex items-center mb-4">

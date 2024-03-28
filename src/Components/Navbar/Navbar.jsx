@@ -122,7 +122,7 @@ const Navbar = () => {
                                     </div>
 
                                     <ul className="dropdown-menu md:w-40 shadow-md">
-                                        <li><Link to="#">My Wishlist</Link></li>
+                                        <li><Link to="/wishlist">My Wishlist</Link></li>
                                         <li><Link to="#">My Oders</Link></li>
                                         <li><Link to="#">My Reviews</Link></li>
                                         <li><Link><button onClick={logOut} className='flex items-center gap-1' type='button'><IoLogOutOutline></IoLogOutOutline>Logout</button></Link></li>
