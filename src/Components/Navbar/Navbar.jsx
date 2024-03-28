@@ -104,7 +104,7 @@ const Navbar = () => {
                 </div>
                 <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
                     <li><NavLink to="/" onClick={closeMenu}>HOME</NavLink></li>
-                    <li><NavLink to="/shop" onClick={closeMenu}>SHOP</NavLink></li>
+                    {/* <li><NavLink to="/shop" onClick={closeMenu}>SHOP</NavLink></li> */}
                     <li><NavLink to="/men" onClick={closeMenu}>MEN</NavLink></li>
                     <li><NavLink to="/women" onClick={closeMenu}>WOMEN</NavLink></li>
                     <li><NavLink to="/kids" onClick={closeMenu}>KIDS</NavLink></li>

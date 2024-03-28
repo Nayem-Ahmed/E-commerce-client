@@ -12,54 +12,60 @@ import MenDetails from "../Pages/ProductsDetails/MenDetails";
 import Privetroute from "./Privetroute";
 import WomenDetails from "../Pages/ProductsDetails/WomenDetails";
 import MyCart from "../Pages/MyCart";
+import KidDetails from "../Pages/ProductsDetails/KidDetails";
 
 const router = createBrowserRouter([
     {
-        path:'/',
-        element:<Root></Root>,
-        errorElement:<ErrorPage></ErrorPage>,
-        children:[
+        path: '/',
+        element: <Root></Root>,
+        errorElement: <ErrorPage></ErrorPage>,
+        children: [
             {
-                path:'/',
-                element:<Home></Home>,
+                path: '/',
+                element: <Home></Home>,
             },
             {
-                path:'/shop',
-                element:<Shop></Shop>,
+                path: '/shop',
+                element: <Shop></Shop>,
             },
             {
-                path:'/men',
+                path: '/men',
                 element: <Men></Men>,
             },
             {
-                path:'/men_details/:id',
-                loader:({params})=> fetch(`http://localhost:5000/allproducts/${params.id}`),
-                element:<Privetroute><MenDetails></MenDetails></Privetroute>,
+                path: '/men_details/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/allproducts/${params.id}`),
+                element: <Privetroute><MenDetails></MenDetails></Privetroute>,
             },
             {
-                path:'/women',
+                path: '/women',
                 element: <Women></Women>,
             },
             {
-                path:'/women_details/:id',
-                loader:({params})=> fetch(`http://localhost:5000/allproducts/${params.id}`),
-                element:<Privetroute><WomenDetails></WomenDetails></Privetroute>,
+                path: '/women_details/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/allproducts/${params.id}`),
+                element: <Privetroute><WomenDetails></WomenDetails></Privetroute>,
             },
             {
-                path:'/cart',
+                path: '/cart',
                 element: <Privetroute><MyCart></MyCart></Privetroute>,
             },
             {
-                path:'/kids',
+                path: '/kids',
                 element: <Kid></Kid>,
             },
             {
-                path:'/login',
-                element:<Login></Login>,
+                path: '/kid_details/:id',
+                loader: ({ params }) => fetch(`http://localhost:5000/allproducts/${params.id}`),
+                element: <Privetroute><KidDetails></KidDetails></Privetroute>,
             },
             {
-                path:'/register',
-                element:<Register></Register>,
+                path: '/login',
+                element: <Login></Login>,
+            },
+            {
+                path: '/register',
+                element: <Register></Register>,
             },
         ]
     }
