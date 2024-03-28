@@ -104,7 +104,7 @@ const Navbar = () => {
                             <li>
                                 <div className='flex items-center cursor-pointer'>
                                     <img className='rounded-full w-8 border' src={user?.photoURL} alt="" />
-                                    <span className='text-sm'>Hello, {user?.email && user.email.slice(0, user.email.indexOf('@'))}</span>
+                                    <span className='text-sm'>Hello, {user?.email && user.email.slice(0, user.email.indexOf('@')).slice(0, 10)}...</span>
                                     <span><MdArrowDropDown></MdArrowDropDown></span>
                                 </div>
 

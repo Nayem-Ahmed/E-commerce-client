@@ -5,13 +5,13 @@ import { toast } from 'react-toastify';
 import useAuth from '../API/useAuth';
 
 const Login = () => {
-    const { signIn } = useAuth();
+    const { signIn, signInWithGoogle } = useAuth();
     const navigate = useNavigate();
     const location = useLocation()
     const handleSubmit = async (e) => {
         e.preventDefault();
-            const email = e.target.email.value
-            const password = e.target.password.value
+        const email = e.target.email.value
+        const password = e.target.password.value
         try {
             const user = await signIn(email, password);
             toast.success('Login successfully!')
@@ -25,7 +25,9 @@ const Login = () => {
 
     const googleLogin = async () => {
         try {
-            console.log(' ');
+            const result = await signInWithGoogle()
+            toast.success('User created successfully');
+            navigate('/')
 
         } catch (error) {
             toast.error(error.message);

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { getAllProducts } from '../API/products';
+import { Link } from 'react-router-dom';
 
 const Women = () => {
     const [womenProducts, setWomenProducts] = useState([]);
@@ -23,7 +24,7 @@ const Women = () => {
             <h2> Women Products</h2>
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center p-5 my-5">
                 {womenProducts?.map(women => (
-                    <div key={women.id} className="bg-white shadow-md overflow-hidden">
+                    <Link to={`/women_details/${women?._id}`} key={women.id} className="bg-white hover:shadow-md overflow-hidden">
                         <img src={women?.image} alt={women?.name} className=" w-full object-cover" />
                         <div className="p-4">
                             <h2 className="text-lg  text-gray-800 mb-2">{women?.name}</h2>
@@ -37,7 +38,7 @@ const Women = () => {
                     Add to Cart
                 </button> */}
                         </div>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>

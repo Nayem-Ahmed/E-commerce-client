@@ -6,7 +6,7 @@ import useAuth from '../API/useAuth';
 import { imgUpload } from '../API/imgbb';
 
 const Register = () => {
-    const { createUser, updateUserProfile } = useAuth();
+    const { createUser, updateUserProfile,signInWithGoogle } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -33,6 +33,9 @@ const Register = () => {
 
     const googleLogin = async () => {
         try {
+            const result = await signInWithGoogle()
+            toast.success('User created successfully');
+            navigate('/')
 
         } catch (error) {
             toast.error(error.message);
