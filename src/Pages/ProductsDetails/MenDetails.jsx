@@ -7,13 +7,17 @@ import Men from '../Men';
 import { addCart } from '../../API/products';
 import { toast } from 'react-toastify';
 import useAuth from '../../API/useAuth';
+import { FacebookShareButton, FacebookShareCount, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
+import { FacebookIcon } from 'react-share'
 
 const MenDetails = () => {
     const menDetails = useLoaderData();
-    const {user} = useAuth();
+    const { user } = useAuth();
     const [quantity, setQuantity] = useState(1);
     const [selectedSize, setSelectedSize] = useState('S');
     const [showShareOptions, setShowShareOptions] = useState(false);
+    const shareUrl = 'https://www.facebook.com/nayem.mdnayem.39395';
+
 
     const handleQuantityChange = (e) => {
         setQuantity(parseInt(e.target.value));
@@ -31,12 +35,12 @@ const MenDetails = () => {
                 ...detailsWithoutId,
                 size: selectedSize,
                 quantity: quantity,
-                email:user?.email,
+                email: user?.email,
             }
             await addCart(addCartData)
             toast.success('Item added to cart successfully!')
         } catch (error) {
-            toast.error( error.message);
+            toast.error(error.message);
         }
     };
     const toggleShareOptions = () => {
@@ -66,17 +70,28 @@ const MenDetails = () => {
                                     {showShareOptions && (
                                         <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                                             <div className="py-1">
+                                                {/* WhatsApp */}
                                                 <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                                    <FaWhatsapp size={20} className="text-green-500" />
-                                                    WhatsApp
+                                                    <WhatsappShareButton className='flex' url={shareUrl}>
+                                                        <WhatsappIcon size={20} className="text-blue-500 mr-2" />
+                                                        WhatsApp
+                                                    </WhatsappShareButton>
                                                 </button>
+
+                                                {/* Facebook */}
                                                 <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                                    <FaFacebook size={20} className="text-blue-500" />
-                                                    Facebook
+                                                    <FacebookShareButton className='flex' url={shareUrl}>
+                                                        <FacebookIcon size={20} className="text-blue-500 mr-2" />
+                                                        Facebook
+                                                    </FacebookShareButton>
                                                 </button>
+
+                                                {/* Twitter */}
                                                 <button className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900">
-                                                    <FaTwitter size={20} className="text-blue-400" />
-                                                    Twitter
+                                                    <TwitterShareButton className='flex' url={shareUrl}>
+                                                        <TwitterIcon size={20} className="text-blue-400 mr-2" />
+                                                        Twitter
+                                                    </TwitterShareButton>
                                                 </button>
                                             </div>
                                         </div>
