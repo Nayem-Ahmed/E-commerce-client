@@ -5,7 +5,7 @@ import { FaFacebook, FaTwitter, FaWhatsapp } from 'react-icons/fa';
 import { useLoaderData } from 'react-router-dom';
 import Women from '../Women';
 import { toast } from 'react-toastify';
-import { addCart } from '../../API/products';
+import { AddWishlistPost, addCart } from '../../API/products';
 import useAuth from '../../API/useAuth';
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
 
@@ -45,6 +45,22 @@ const WowomenDetails = () => {
     const toggleShareOptions = () => {
         setShowShareOptions(!showShareOptions);
     };
+    const handleWishlist = async() => {
+        try {
+            const { _id, ...detailsWithoutId } = womenDetails;
+            const addWishlist = {
+                ...detailsWithoutId,
+                quantity: quantity,
+                email:user?.email,
+            }
+            await AddWishlistPost(addWishlist)
+            toast.success('Item added to cart successfully!')
+        } catch (error) {
+            toast.error(error.message);
+        }
+        
+    };
+
     return (
         <>
             <div className="flex gap-5 justify-center mx-4 my-8">
@@ -95,7 +111,7 @@ const WowomenDetails = () => {
                                         </div>
                                     )}
                                 </div>
-                                <CiHeart className='text-2xl'></CiHeart>
+                                <button onClick={handleWishlist}><CiHeart className='text-2xl'></CiHeart></button>
                             </div>
                         </div>
                         <div className="flex items-center mb-4">
