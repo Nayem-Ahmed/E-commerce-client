@@ -40,16 +40,16 @@ const Wishlist = () => {
     }
 
     return (
-        <div className="container mx-auto py-6">
+        <div className="mx-auto py-6 p-5  bg-gray-50 ">
             {wishlistItems.length === 0 ? (
                 <p className='text-center'>Your wishlist is empty.</p>
             ) : (
-                <div className=" ">
+                <div className="">
                     {wishlistItems?.map(item => (
-                        <div key={item._id} className='flex items-center justify-between'>
-                            <div>
-                                <img src={item.image} alt={item.name} className="w-24 object-cover" />
-                                <p>{item.name}</p>
+                        <div key={item._id} className='flex items-center justify-between bg-white mb-3 p-5'>
+                            <div className='flex gap-1'>
+                                <img src={item.image} alt={item.name} className="w-20 object-cover" />
+                                <p className='max-w-64'>{item.name}</p>
                             </div>
                             <p className='text-[#eb2f06] font-semibold text-xl'>${item.new_price}</p>
                             <button onClick={() => { handleaddCart(item) }} type='button' className='bg-[#eb2f06] px-5 py-2 text-white'><MdAddShoppingCart></MdAddShoppingCart></button>

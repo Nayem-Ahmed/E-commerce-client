@@ -56,9 +56,9 @@ const MyCart = () => {
     if (isError) return <div>Error occurred while fetching cart data</div>;
 
     return (
-        <div className="bg-gray-100 min-h-screen">
-            <main className="container mx-auto py-6">
-                <div className="bg-white rounded shadow overflow-hidden">
+        <div className="bg-gray-100 min-h-screen p-5">
+            <main className=" mx-auto ">
+                <div className="bg-white rounded  overflow-hidden">
                     <table className="w-full">
                         <thead className="bg-gray-200">
                             <tr>
@@ -69,7 +69,7 @@ const MyCart = () => {
                                 <th className="px-4 py-2">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody className='border-b'>
                             {cartData?.map(item => (
                                 <tr key={item._id}>
                                     <td className="flex items-center px-4 py-2 hidden sm:table-cell">

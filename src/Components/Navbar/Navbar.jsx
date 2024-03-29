@@ -85,8 +85,8 @@ const Navbar = () => {
     });
     refetch();
 
-    if (isLoading) return <div>Loading...</div>;
-    if (isError) return <div>Error occurred while fetching cart data</div>;
+    // if (isLoading) return <div>Loading...</div>;
+    // if (isError) return <div>Error occurred while fetching cart data</div>;
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
