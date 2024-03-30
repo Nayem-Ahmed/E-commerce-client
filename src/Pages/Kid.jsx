@@ -20,7 +20,7 @@ const Kid = () => {
 
         fetchData(); // Call the fetchData function when the component mounts
     }, [sortOption]); // Empty dependency array to run the effect only once when the component mounts
-    
+
     const handleSortChange = async (event) => {
         const selectedOption = event.target.value; // Update sort option when changed
         setSortOption(selectedOption)
@@ -29,13 +29,12 @@ const Kid = () => {
     return (
         <div className='p-5'>
             <div className='flex justify-between'>
-                <p>{kidsProducts.length} items found </p>
-                <div>
+                <p>{kidsProducts?.length} items found of <span className='text-[#eb2f06]'>"{kidsProducts[0]?.category}"</span></p><div>
                     sort by :
                     <select onChange={handleSortChange} className='border py-2 px-3 rounded-full'>
                         <option value="">Select</option>
-                        <option value="priceLowToHigh">Price Low to High</option>
                         <option value="priceHighToLow">Price High to Low</option>
+                        <option value="priceLowToHigh">Price Low to High</option>
                     </select>
                 </div>
             </div>

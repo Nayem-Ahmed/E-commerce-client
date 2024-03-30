@@ -29,13 +29,13 @@ const Women = () => {
     return (
         <div className='p-5'>
             <div className='flex justify-between'>
-                <p>{womenProducts.length} items found </p>
+            <p>{womenProducts?.length} items found of <span className='text-[#eb2f06]'>"{womenProducts[0]?.category}"</span></p>
                 <div>
                     sort by :
                     <select onChange={handleSortChange} className='border py-2 px-3 rounded-full'>
                         <option value="">Select</option>
-                        <option value="priceLowToHigh">Price Low to High</option>
                         <option value="priceHighToLow">Price High to Low</option>
+                        <option value="priceLowToHigh">Price Low to High</option>
                     </select>
                 </div>
             </div>

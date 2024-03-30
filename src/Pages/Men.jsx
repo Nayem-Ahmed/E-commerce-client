@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getAllProducts } from '../API/products';
 import { Link } from 'react-router-dom';
+import { MdOutlineKeyboardArrowRight } from "react-icons/md";
+
 
 const Men = () => {
     const [menProducts, setMenProducts] = useState([]);
@@ -30,14 +32,17 @@ const Men = () => {
 
     return (
         <div className='p-5'>
+            <div className='flex items-center gap-2 mb-8 text-sm '>
+                <Link className='hover:text-[#eb2f06]' to='/'>Home</Link><MdOutlineKeyboardArrowRight />Shop<MdOutlineKeyboardArrowRight /><Link className='hover:text-[#eb2f06]'>{menProducts[0]?.category}</Link>
+            </div>
             <div className='flex justify-between'>
-                <p>{menProducts.length} items found </p>
+                <p>{menProducts.length} items found of <span className='text-[#eb2f06]'>"{menProducts[0]?.category}"</span></p>
                 <div>
                     sort by :
                     <select onChange={handleSortChange} className='border py-2 px-3 rounded-full'>
                         <option value="">Select</option>
-                        <option value="priceLowToHigh">Price Low to High</option>
                         <option value="priceHighToLow">Price High to Low</option>
+                        <option value="priceLowToHigh">Price Low to High</option>
                     </select>
                 </div>
             </div>
