@@ -39,12 +39,12 @@ const Kid = () => {
                     </select>
                 </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center   my-5">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center group  my-5">
                 {kidsProducts?.map(kid => (
-                    <Link to={`/kid_Details/${kid._id}`} key={kid.id} className="bg-white shadow-md overflow-hidden">
+                    <Link to={`/kid_Details/${kid._id}`} key={kid.id} className="bg-white shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-110">
                         <img src={kid?.image} alt={kid?.name} className=" w-full object-cover" />
                         <div className="p-4">
-                            <h2 className="text-lg  text-gray-800 mb-2">{kid?.name}</h2>
+                            <h2 className=" text-gray-800 mb-2">{kid?.name}</h2>
                             <div className="flex justify-between items-center mb-4">
                                 <span className="text-lg text-gray-700">${kid?.new_price}</span>
                                 {kid?.old_price && (

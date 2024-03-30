@@ -39,12 +39,12 @@ const Women = () => {
                     </select>
                 </div>
             </div>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center  my-5">
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center my-5 group">
                 {womenProducts?.map(women => (
-                    <Link to={`/women_details/${women?._id}`} key={women.id} className="bg-white hover:shadow-md overflow-hidden">
+                    <Link to={`/women_details/${women?._id}`} key={women.id} className="bg-white hover:shadow-md overflow-hidden transform transition-transform duration-300 hover:scale-110">
                         <img src={women?.image} alt={women?.name} className=" w-full object-cover" />
                         <div className="p-4">
-                            <h2 className="text-lg  text-gray-800 mb-2">{women?.name}</h2>
+                            <h2 className="text-gray-800 mb-2">{women?.name}</h2>
                             <div className="flex justify-between items-center mb-4">
                                 <span className="text-lg text-gray-700">${women?.new_price}</span>
                                 {women?.old_price && (
