@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getAllProducts } from '../API/products';
 import { Link } from 'react-router-dom';
+import { MdOutlineKeyboardArrowRight ,MdAddShoppingCart} from 'react-icons/md';
+ 
 
 const Kid = () => {
     const [kidsProducts, setKidsProducts] = useState([]);
@@ -28,6 +30,9 @@ const Kid = () => {
     };
     return (
         <div className='p-5'>
+            <div className='flex items-center gap-2 mb-8 text-sm '>
+                <Link className='hover:text-[#eb2f06]' to='/'>Home</Link><MdOutlineKeyboardArrowRight/>Shop<MdOutlineKeyboardArrowRight /><Link className='hover:text-[#eb2f06]'>{kidsProducts[0]?.category}</Link>
+            </div>
             <div className='flex justify-between'>
                 <p>{kidsProducts?.length} items found of <span className='text-[#eb2f06]'>"{kidsProducts[0]?.category}"</span></p><div>
                     sort by :

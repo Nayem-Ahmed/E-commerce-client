@@ -8,6 +8,7 @@ import useAuth from '../../API/useAuth';
 import { toast } from 'react-toastify';
 import { AddWishlistPost, addCart } from '../../API/products';
 import { FacebookIcon, FacebookShareButton, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
+import { MdAddShoppingCart } from 'react-icons/md';
 
 const KidDetails = () => {
     const kiddetails = useLoaderData();
@@ -62,16 +63,16 @@ const KidDetails = () => {
     };
     return (
         <>
-            <div className="flex gap-5 justify-center mx-4 my-8">
-                <div className="flex flex-col">
-                    <img src={kiddetails.image} alt="" className="w-40 h-28 mb-4" />
-                    <img src={kiddetails.image} alt="" className="w-40 h-28 mb-4" />
-                    <img src={kiddetails.image} alt="" className="w-40 h-28 mb-4" />
+            <div className="flex flex-col md:flex-row gap-5 justify-center mx-4 my-8">
+                <div className="md:flex hidden flex flex-col">
+                    <img src={kiddetails?.image} alt="" className="w-40 h-28 mb-4" />
+                    <img src={kiddetails?.image} alt="" className="w-40 h-28 mb-4" />
+                    <img src={kiddetails?.image} alt="" className="w-40 h-28 mb-4" />
                 </div>
                 <img src={kiddetails.image} alt="" className="mb-4" />
                 <div className="flex flex-col justify-between">
                     <div>
-                        <h1 className="text-3xl font-semibold mb-4">{kiddetails.name}</h1>
+                        <h1 className="text-3xl font-semibold mb-4">{kiddetails?.name}</h1>
                         <div className='flex  w-11/12 justify-between'>
                             <div>*****</div>
                             <div className='flex items-center gap-3'>
@@ -132,7 +133,7 @@ const KidDetails = () => {
                                 <label htmlFor="quantity" className="mr-2">Quantity:</label>
                                 <input type="number" id="quantity" name="quantity" min="1" max={5} value={quantity} onChange={handleQuantityChange} className="border border-gray-300 rounded w-20 px-4 py-1" />
                             </div>
-                            <button type="submit" className="bg-[#eb2f06] text-white px-4 py-2 rounded-sm    hover:bg-red-800 hover:text-gray-100">Add to Cart</button>
+                            <button type="submit" className="flex items-center gap-1 bg-[#eb2f06] text-white px-4 py-2 rounded-sm    hover:bg-red-800 hover:text-gray-100"><MdAddShoppingCart></MdAddShoppingCart>Add to Cart</button>
                         </form>
                     </div>
 

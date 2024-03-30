@@ -9,6 +9,7 @@ import { toast } from 'react-toastify';
 import useAuth from '../../API/useAuth';
 import { FacebookShareButton, FacebookShareCount, TwitterIcon, TwitterShareButton, WhatsappIcon, WhatsappShareButton } from 'react-share';
 import { FacebookIcon } from 'react-share'
+import { MdAddShoppingCart } from 'react-icons/md';
 
 const MenDetails = () => {
     const menDetails = useLoaderData();
@@ -46,26 +47,26 @@ const MenDetails = () => {
     const toggleShareOptions = () => {
         setShowShareOptions(!showShareOptions);
     };
-    const handleWishlist = async() => {
+    const handleWishlist = async () => {
         try {
             const { _id, ...detailsWithoutId } = menDetails;
             const addWishlist = {
                 ...detailsWithoutId,
                 quantity: quantity,
-                email:user?.email,
+                email: user?.email,
             }
             await AddWishlistPost(addWishlist)
             toast.success('Item added to cart successfully!')
         } catch (error) {
             toast.error(error.message);
         }
-        
+
     };
 
     return (
         <>
-            <div className="flex gap-5 justify-center mx-4 my-8">
-                <div className="flex flex-col">
+            <div className="flex flex-col md:flex-row gap-5 justify-center mx-4 my-8">
+                <div className="flex flex-col md:flex hidden">
                     <img src={menDetails.image} alt="" className="w-40 h-28 mb-4" />
                     <img src={menDetails.image} alt="" className="w-40 h-28 mb-4" />
                     <img src={menDetails.image} alt="" className="w-40 h-28 mb-4" />
@@ -73,7 +74,7 @@ const MenDetails = () => {
                 <img src={menDetails.image} alt="" className="mb-4" />
                 <div className="flex flex-col justify-between">
                     <div>
-                        <h1 className="text-3xl font-semibold mb-4">{menDetails.name}</h1>
+                        <h1 className="text-3xl font-semibold mb-4">{menDetails?.name}</h1>
                         <div className='flex  w-11/12 justify-between'>
                             <div>*****</div>
                             <div className='flex items-center gap-3'>
@@ -134,13 +135,12 @@ const MenDetails = () => {
                                 <label htmlFor="quantity" className="mr-2">Quantity:</label>
                                 <input type="number" id="quantity" name="quantity" min="1" max={5} value={quantity} onChange={handleQuantityChange} className="border border-gray-300 rounded w-20 px-4 py-1" />
                             </div>
-                            <button type="submit" className="bg-[#eb2f06] text-white px-4 py-2 rounded-sm    hover:bg-red-800 hover:text-gray-100">Add to Cart</button>
+                            <button type="submit" className="flex items-center gap-1 bg-[#eb2f06] text-white px-4 py-2 rounded-sm hover:bg-red-800 hover:text-gray-100"><MdAddShoppingCart /> Add to Cart</button>
                         </form>
                     </div>
 
                 </div>
             </div>
-
             <div onClick={window.scrollTo(0, 0)}>
 
                 <Men></Men>
