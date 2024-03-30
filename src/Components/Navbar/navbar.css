@@ -1,5 +1,4 @@
  /* Navbar styles */
-
  .navbar {
      background-color: #fff;
      padding: 1rem;
@@ -18,17 +17,6 @@
      font-size: 1.5rem;
  }
 
- .nav-menu {
-     list-style: none;
-     display: flex;
-     align-items: center;
- }
-
- .nav-menu .active {
-     text-decoration: underline;
-     color: #eb2f06;
- }
-
  .nav-menu li {
      margin-right: 1rem;
  }
@@ -44,17 +32,49 @@
      font-size: 14px;
  }
 
+ .login-link {
+     text-decoration: none;
+ }
+
+ .menu-icon {
+     display: block;
+ }
+
+ .nav-menu {
+     display: none;
+     gap: 10px;
+     position: absolute;
+     top: 100%;
+     left: 0;
+     width: 100%;
+     background-color: #333;
+     padding: 1rem;
+ }
+
+ .nav-menu.active {
+     display: flex;
+ }
+
+ .nav-menu .active {
+     text-decoration: underline;
+     color: #eb2f06;
+ }
+
+ .nav-menu li {
+     margin: 0;
+     padding: 0.5rem 0;
+     text-align: center;
+ }
+
  .nav-menu a:hover {
      color: #eb2f06;
      transition: .4s;
  }
 
-
- /* Login button styles */
-
- .login-link {
-     text-decoration: none;
+ .nav-menu a {
+     color: #fff;
  }
+
 
  /* Responsive styles */
 
@@ -74,33 +94,11 @@
          padding: 1rem;
      }
 
-     .nav-menu.active {
-         display: flex;
-     }
-
-     .nav-menu li {
-         margin: 0;
-         padding: 0.5rem 0;
-         text-align: center;
-     }
 
      .nav-menu a {
          color: #fff;
      }
 
-     /* Adjustments for the search input */
-     .search-container {
-
-         text-align: center;
-     }
-
-     .search-input {
-         width: 100%;
-         max-width: 300px;
-         /* Adjust as needed */
-     }
-
-     /* Adjustments for the login button */
      .login-link {
 
          text-align: center;
@@ -112,13 +110,6 @@
  }
 
  /* ---------------- */
-
-
-
-
-
-
-
 
  .header-menu {}
 
@@ -188,4 +179,4 @@
      border: none;
  }
 
- .header-menu ul li ul li a:hover {}
+ 

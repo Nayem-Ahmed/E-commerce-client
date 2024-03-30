@@ -100,7 +100,7 @@ const Navbar = () => {
         <nav className="navbar z-50 relative shadow-sm block">
             <div className="navbar-container">
                 <div className="navbar-logo">
-                    <Link to="/"><img className='md:max-w-44 h-10' src={logo} alt="Logo" /></Link>
+                    <Link to="/"><img className='md:max-w-48 max-h-12' src={logo} alt="Logo" /></Link>
                 </div>
                 <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
                     <li><NavLink to="/" onClick={closeMenu}>HOME</NavLink></li>
@@ -117,11 +117,11 @@ const Navbar = () => {
                                 <li>
                                     <div className='flex items-center cursor-pointer'>
                                         <img className='rounded-full w-8 border' src={user?.photoURL} alt="" />
-                                        <span className='text-sm'>Hello, {user?.email && user.email.slice(0, user.email.indexOf('@')).slice(0, 10)}...</span>
+                                        <span className='text-sm'>Hello, {user?.email && user?.email.slice(0, user?.email.indexOf('@')).slice(0, 10)}...</span>
                                         <span><MdArrowDropDown></MdArrowDropDown></span>
                                     </div>
 
-                                    <ul className="dropdown-menu md:w-40 shadow-md">
+                                    <ul className="dropdown-menu w-40  shadow-md">
                                         <li><Link to="/wishlist">My Wishlist</Link></li>
                                         <li><Link to="#">My Oders</Link></li>
                                         <li><Link to="#">My Reviews</Link></li>
@@ -137,15 +137,15 @@ const Navbar = () => {
                             </button>
                         </Link>
                     }
+                    <div className={`menu-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
+                        {isOpen ? <FaTimes /> : <FaBars />}
+                    </div>
                     <Link to="/cart" onClick={closeMenu}>
                         <div className='flex items-center'>
                             <IoCartOutline className='text-2xl' />
                             <span className='relative -mt-5 bg-[#eb2f06] text-white h-4 w-4 rounded-full text-center leading-[16px] '>  {cartData?.length > 0 ? cartData?.length : ''}</span>
                         </div>
                     </Link>
-                    <div className={`menu-icon ${isOpen ? 'open' : ''}`} onClick={toggleMenu}>
-                        {isOpen ? <FaTimes /> : <FaBars />}
-                    </div>
                 </div>
             </div>
         </nav>
