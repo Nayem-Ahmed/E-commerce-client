@@ -20,9 +20,19 @@ const Kid = () => {
         fetchData(); // Call the fetchData function when the component mounts
     }, []); // Empty dependency array to run the effect only once when the component mounts
     return (
-        <div>
-            <h2>Kid Products</h2>
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center p-5 my-5">
+        <div className='p-5'>
+            <div className='flex justify-between'>
+                <p>{kidsProducts.length} items found </p>
+                <div>
+                    sort by :
+                    <select className='border py-2 px-3 rounded-full'>
+                        <option value="">Select</option>
+                        <option value="priceLowToHigh">Price Low to High</option>
+                        <option value="priceHighToLow">Price High to Low</option>
+                    </select>
+                </div>
+            </div>
+            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center   my-5">
                 {kidsProducts?.map(kid => (
                     <Link to={`/kid_Details/${kid._id}`} key={kid.id} className="bg-white shadow-md overflow-hidden">
                         <img src={kid?.image} alt={kid?.name} className=" w-full object-cover" />
