@@ -71,6 +71,7 @@ import useAuth from '../../API/useAuth';
 import { MdArrowDropDown } from "react-icons/md";
 import { getCartData } from '../../API/products';
 import { useQuery } from 'react-query';
+import { RiSearchLine } from 'react-icons/ri';
 import Loader from '../Loader/Loader';
 
 
@@ -102,6 +103,14 @@ const Navbar = () => {
                 <div className="navbar-logo">
                     <Link to="/"><img className='md:max-w-48 max-h-12' src={logo} alt="Logo" /></Link>
                 </div>
+                <div className="relative w-7/12 md:block hidden">
+                    <input
+                        type="text"
+                        className="w-full h-9 px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none "
+                        placeholder="Search..."
+                    />
+                    <RiSearchLine className="absolute top-0 right-0 h-full w-10 p-2 text-gray-600" />
+                </div>
                 <ul className={`nav-menu ${isOpen ? 'active' : ''}`}>
                     <li><NavLink to="/" onClick={closeMenu}>HOME</NavLink></li>
                     {/* <li><NavLink to="/shop" onClick={closeMenu}>SHOP</NavLink></li> */}
@@ -116,7 +125,7 @@ const Navbar = () => {
                             <ul>
                                 <li>
                                     <div className='flex items-center cursor-pointer'>
-                                        <img className='rounded-full w-8 border' src={user?.photoURL} alt="" />
+                                        <img className='rounded-full w-10 border' src={user?.photoURL} alt="" />
                                         <span className='text-sm'>Hello, {user?.email && user?.email.slice(0, user?.email.indexOf('@')).slice(0, 10)}...</span>
                                         <span><MdArrowDropDown></MdArrowDropDown></span>
                                     </div>
