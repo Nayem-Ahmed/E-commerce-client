@@ -7,14 +7,11 @@ import CheckOutForm from './CheckOutForm';
 // recreating the `Stripe` object on every render.
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_Publishable);
 const Payment = () => {
-    const options = {
-        // passing the client secret obtained from the server
-        clientSecret: '{{CLIENT_SECRET}}',
-    };
+
     return (
         <div className='p-5'>
             <Elements stripe={stripePromise}>
-                <CheckOutForm/>
+                <CheckOutForm />
             </Elements>
         </div>
     );

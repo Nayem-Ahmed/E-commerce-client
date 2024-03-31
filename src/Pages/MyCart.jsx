@@ -25,7 +25,7 @@
 
 import React from 'react';
 import useAuth from '../API/useAuth';
-import { useQuery, useMutation } from 'react-query';
+import { useQuery } from 'react-query';
 import { getCartData, deleteCart } from '../API/products';
 import Loader from '../Components/Loader/Loader';
 import { toast } from 'react-toastify';
@@ -33,20 +33,26 @@ import { Link } from 'react-router-dom';
 
 const MyCart = () => {
     const { user } = useAuth();
-    const { data: cartData, isLoading, isError, refetch } = useQuery(['cartData', user?.email], () => getCartData(user?.email));
+    const { data: cartData, isLoading, isError, refetch } = useQuery({
+        queryKey: ['cartData', user?.email],
+        queryFn: () => getCartData(user?.email),
+    });
 
     const handleUpdateQuantity = async (itemId, newQuantity) => {
         try {
-            await updateQuantityMutation.mutateAsync({ itemId, newQuantity });
+            console.log(itemId, newQuantity);
         } catch (error) {
             console.error('Error updating quantity:', error);
         }
     };
 
-    const getTotalAmount = () => {
-        if (!cartData) return 0;
-        return cartData.reduce((total, item) => total + (item.new_price * item.quantity), 0);
-    };
+    // const getTotalAmount = () => {
+    //     if (!cartData) return 0;
+    //     return cartData.reduce((total, item) => total + (item.new_price * item.quantity), 0);
+    // };
+    const totalPrice = cartData?.reduce((total, item) => total + (item.new_price * item.quantity), 0);
+
+
     const handleRemoveItem = async (itemId) => {
         await deleteCart(itemId)
         refetch();
@@ -83,7 +89,7 @@ const MyCart = () => {
                                         <input
                                             type="number"
                                             value={item.quantity}
-                                            onChange={(e) => handleUpdateQuantity(item.id, e.target.value)}
+                                            onChange={(e) => handleUpdateQuantity(item._id, e.target.value)}
                                             className="w-16 px-2 py-1 border rounded focus:outline-none"
                                         />
                                     </td>
@@ -97,7 +103,7 @@ const MyCart = () => {
                     </table>
                     <div className="flex flex-col sm:flex-row justify-end items-center px-4 py-2">
                         <span className="font-semibold">Total:</span>
-                        <span className="ml-2 mb-2 sm:mb-0">${getTotalAmount().toFixed(2)}</span>
+                        <span className="ml-2 mb-2 sm:mb-0">${totalPrice.toFixed(2)}</span>
                     </div>
                     <div className="flex justify-end px-4 py-2">
                         <button className="bg-gray-800 text-white px-4 py-2 rounded mr-2">Clear Cart</button>
