@@ -14,6 +14,7 @@ import WomenDetails from "../Pages/ProductsDetails/WomenDetails";
 import MyCart from "../Pages/MyCart";
 import KidDetails from "../Pages/ProductsDetails/KidDetails";
 import Wishlist from "../Pages/Wishlist";
+import Payment from "../Pages/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
             {
                 path: '/wishlist',
                 element:<Privetroute><Wishlist></Wishlist></Privetroute>,
+            },
+            {
+                path: '/payment',
+                element:<Privetroute><Payment></Payment></Privetroute>,
             },
             {
                 path: '/login',

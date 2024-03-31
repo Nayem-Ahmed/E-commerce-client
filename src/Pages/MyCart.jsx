@@ -29,6 +29,7 @@ import { useQuery, useMutation } from 'react-query';
 import { getCartData, deleteCart } from '../API/products';
 import Loader from '../Components/Loader/Loader';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const MyCart = () => {
     const { user } = useAuth();
@@ -46,7 +47,7 @@ const MyCart = () => {
         if (!cartData) return 0;
         return cartData.reduce((total, item) => total + (item.new_price * item.quantity), 0);
     };
-    const handleRemoveItem =async (itemId) => {
+    const handleRemoveItem = async (itemId) => {
         await deleteCart(itemId)
         refetch();
         toast.success('Item removed successfully.');
@@ -54,6 +55,7 @@ const MyCart = () => {
 
     if (isLoading) return <Loader />;
     if (isError) return <div>Error occurred while fetching cart data</div>;
+    const isCartEmpty = !cartData || cartData.length === 0;
 
     return (
         <div className="bg-gray-100 min-h-screen p-5">
@@ -99,7 +101,12 @@ const MyCart = () => {
                     </div>
                     <div className="flex justify-end px-4 py-2">
                         <button className="bg-gray-800 text-white px-4 py-2 rounded mr-2">Clear Cart</button>
-                        <button className="bg-blue-500 text-white px-4 py-2 rounded">Proceed to Checkout</button>
+                        <Link to='/payment'>
+                            <button
+                                disabled={isCartEmpty}
+                                className={`bg-[#eb2f06] text-white px-4 py-2 rounded ${isCartEmpty ? 'opacity-50 cursor-not-allowed' : ''}`}
+                                title={isCartEmpty ? 'Your cart is empty' : ''}> Proceed to Checkout </button>
+                        </Link>
                     </div>
                 </div>
             </main>
