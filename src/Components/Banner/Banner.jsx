@@ -12,6 +12,7 @@ import './banner.css';
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
+import { Link } from 'react-router-dom';
 
 const Banner = () => {
     return (
@@ -33,8 +34,12 @@ const Banner = () => {
                         <div className="text-overlay md:basis-5/12  text-center">
                             <p className=" text-lg  mb-3">It has Finally started…</p>
                             <h1 className=" md:text-5xl font-bold mb-4">HUGE SALE</h1>
+                            <Link to={'/men'}>
                             <button className="bg-transparent text-black md:px-6 md:py-2 p-2 ml-2 rounded-md border border-black hover:bg-black hover:text-white">SHOP MEN</button>
+                            </Link>
+                            <Link to={'/women'}>
                             <button className="bg-transparent text-black md:px-6 md:py-2 p-2 ml-2 rounded-md border border-black hover:bg-black hover:text-white">SHOP WOMEN</button>
+                            </Link>
                         </div>
                         <div>
                         </div>
@@ -46,8 +51,12 @@ const Banner = () => {
                         <p className=" text-lg mb-3">Summer Fashion Trends</p>
                         <h1 className="md:text-5xl font-bold mb-4">BIG SALE UP TO</h1>
                         <h2 className='text-6xl font-bold mb-3'>80%</h2>
-                        <button className="bg-transparent text-black md:px-6 md:py-2 p-2 ml-2 rounded-md border border-black hover:bg-black hover:text-white">SHOP MEN</button>
-                        <button className="bg-transparent text-black md:px-6 md:py-2 p-2 ml-2 rounded-md border border-black hover:bg-black hover:text-white">SHOP WOMEN</button>
+                        <Link to={'/men'}>
+                            <button className="bg-transparent text-black md:px-6 md:py-2 p-2 ml-2 rounded-md border border-black hover:bg-black hover:text-white">SHOP MEN</button>
+                        </Link>
+                        <Link to={'/women'}>
+                            <button className="bg-transparent text-black md:px-6 md:py-2 p-2 ml-2 rounded-md border border-black hover:bg-black hover:text-white">SHOP WOMEN</button>
+                        </Link>
                     </div>
 
 
