@@ -4,6 +4,7 @@ import axiosPublice from '../../API/axiosPublice';
 import { getCartData } from '../../API/products';
 import { useQuery } from 'react-query';
 import useAuth from '../../API/useAuth';
+import axios from 'axios';
 
 const CheckOutForm = () => {
     const stripe = useStripe();
@@ -40,9 +41,8 @@ const CheckOutForm = () => {
         // Block native form submission.
         event.preventDefault();
 
-        if (!stripe || !elements) {
-            // Stripe.js has not loaded yet. Make sure to disable
-            // form submission until Stripe.js has loaded.
+        if (!stripe || !elements || !cartData || cartData.length === 0) {
+            // Stripe.js has not loaded yet or cartData is empty. Disable form submission.
             return;
         }
 
@@ -64,12 +64,14 @@ const CheckOutForm = () => {
         if (error) {
             console.log('[error]', error);
             setErr(error.message);
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
-            // You can handle successful payment here
-            setErr('')
+            return;
         }
-        // confirm payment
+
+        console.log('[PaymentMethod]', paymentMethod);
+        // You can handle successful payment here
+        setErr('');
+
+        // Confirm payment
         const { paymentIntent, error: paymentError } = await stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
@@ -83,14 +85,35 @@ const CheckOutForm = () => {
         if (paymentError) {
             console.error('Error confirming card payment:', paymentError);
             // Handle the payment confirmation error here
-        } else {
-            console.log('Payment confirmed:', paymentIntent);
-            setTransid(paymentIntent.id)
+            return;
         }
 
+        console.log('Payment confirmed:', paymentIntent);
+        setTransid(paymentIntent.id);
 
+        // Save payment history in database for each item in cartData
+        cartData?.map(async (item, index) => {
+            const savePayment = {
+                name: user?.displayName,
+                email: user?.email,
+                price: totalPrice,
+                itemName: item.name,
+                category: item.category,
+                new_price: item.new_price,
+                status: 'pending',
+            };
 
+            try {
+                const response = await axiosPublice.post('/payment_history', savePayment);
+                console.log(`Payment history saved successfully for item ${index + 1}:`, response.data);
+                // Handle success, if needed
+            } catch (error) {
+                console.error(`Error saving payment history for item ${index + 1}:`, error);
+                // Handle error, if needed
+            }
+        });
     };
+
 
     return (
         <div className="max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md">
