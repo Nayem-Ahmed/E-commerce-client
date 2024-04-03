@@ -26,7 +26,7 @@
 import React from 'react';
 import useAuth from '../API/useAuth';
 import { useQuery } from 'react-query';
-import { getCartData, deleteCart } from '../API/products';
+import { getCartData, deleteCart, incrementQuantity, decrementQuantity } from '../API/products';
 import Loader from '../Components/Loader/Loader';
 import { toast } from 'react-toastify';
 import { Link } from 'react-router-dom';
@@ -38,18 +38,27 @@ const MyCart = () => {
         queryFn: () => getCartData(user?.email),
     });
 
-    const handleUpdateQuantity = async (itemId, newQuantity) => {
+    // const handleUpdateQuantity = async (itemId, newQuantity, prevQuantity) => {
+    //     try {
+    //         console.log(itemId, newQuantity, prevQuantity);
+    //         await incrementQuantity(itemId)
+    //     } catch (error) {
+    //         console.error('Error updating quantity:', error);
+    //     }
+    // };
+    const handleUpdateQuantity = async (itemId, newQuantity, prevQuantity) => {
         try {
-            console.log(itemId, newQuantity);
+            const diff = newQuantity - prevQuantity;
+            if (diff > 0) {
+                await incrementQuantity(itemId, diff); // Increment quantity
+            } else if (diff < 0) {
+                await decrementQuantity(itemId, -diff); // Decrement quantity
+            }
         } catch (error) {
             console.error('Error updating quantity:', error);
         }
     };
 
-    // const getTotalAmount = () => {
-    //     if (!cartData) return 0;
-    //     return cartData.reduce((total, item) => total + (item.new_price * item.quantity), 0);
-    // };
     const totalPrice = cartData?.reduce((total, item) => total + (item.new_price * item.quantity), 0);
 
 
@@ -89,7 +98,7 @@ const MyCart = () => {
                                         <input
                                             type="number"
                                             value={item.quantity}
-                                            onChange={(e) => handleUpdateQuantity(item._id, e.target.value)}
+                                            onChange={(e) => handleUpdateQuantity(item._id, e.target.value, item.quantity)}
                                             className="w-16 px-2 py-1 border rounded focus:outline-none"
                                         />
                                     </td>

@@ -15,6 +15,19 @@ export const getCartData = async (email) => {
     const { data } = await axiosPublice(`/addcart/${email}`)
     return data;
 }
+// increment quantity
+export const incrementQuantity = async (id) => {
+    // const { data } = await axiosPublice.patch(`/increment_quantity`,id)
+    const { data } = await axiosPublice.patch(`/increment_quantity/${id}`);
+
+    return data;
+}
+// decrement quantity
+export const decrementQuantity = async (id) => {
+    const { data } = await axiosPublice.patch(`/decrement_quantity/${id}`);
+    return data;
+}
+
 //Delete  add cart
 export const deleteCart = async (deletecart) => {
     const { deletedata } = await axiosPublice.delete(`/addcart/${deletecart}`)
@@ -28,5 +41,10 @@ export const AddWishlistPost = async (wishlistdata) => {
 // Get wishlists by params
 export const getWishList = async (email) => {
     const { data } = await axiosPublice(`/wishlist/${email}`)
+    return data;
+}
+// get payment history
+export const getPaymentData = async (email) => {
+    const { data } = await axiosPublice(`/payment_history/${email}`)
     return data;
 }
