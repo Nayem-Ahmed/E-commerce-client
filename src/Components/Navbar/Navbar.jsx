@@ -61,7 +61,7 @@
 
 
 // Navbar.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { Link, NavLink } from 'react-router-dom';
 import './navbar.css';
@@ -69,7 +69,7 @@ import logo from '../../assets/e-logo.png';
 import { IoPersonOutline, IoLogOutOutline, IoCartOutline } from "react-icons/io5";
 import useAuth from '../../API/useAuth';
 import { MdArrowDropDown } from "react-icons/md";
-import { getCartData } from '../../API/products';
+import { getAllProducts, getCartData } from '../../API/products';
 import { useQuery } from 'react-query';
 import { RiSearchLine } from 'react-icons/ri';
 import Loader from '../Loader/Loader';
@@ -78,6 +78,8 @@ import Loader from '../Loader/Loader';
 const Navbar = () => {
     const { user, logOut } = useAuth();
     const [isOpen, setIsOpen] = useState(false);
+    const [search, setSearch] = useState('');
+    const [allproducts, setALLProducts] = useState([]);
 
 
     const { data: cartData, isLoading, isError, refetch } = useQuery({
@@ -89,6 +91,20 @@ const Navbar = () => {
     // if (isLoading) return <div>Loading...</div>;
     // if (isError) return <div>Error occurred while fetching cart data</div>;
 
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const productsData = await getAllProducts('priceLowToHigh', search); // Fetch data from the API
+                setALLProducts(productsData); // Set the fetched data to state
+            } catch (error) {
+                console.error('Error fetching products:', error);
+            }
+        };
+
+        fetchData(); // Call the fetchData function when the component mounts
+    }, [search]);
+
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
@@ -96,6 +112,10 @@ const Navbar = () => {
     const closeMenu = () => {
         setIsOpen(false);
     };
+    const handleSearch = (e) => {
+        setSearch(e.target.value);
+        console.log(search);
+    }
 
     return (
         <nav className="navbar z-50 relative shadow-sm block">
@@ -105,8 +125,11 @@ const Navbar = () => {
                 </div>
                 <div className="relative w-7/12 md:block hidden">
                     <input
+                        onChange={handleSearch}
                         type="text"
-                        className="w-full h-9 px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none "
+                        name='search'
+                        id='search'
+                        className="w-full h-9 px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none"
                         placeholder="Search..."
                     />
                     <RiSearchLine className="absolute top-0 right-0 h-full w-10 p-2 text-gray-600" />

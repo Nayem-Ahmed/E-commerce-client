@@ -15,7 +15,7 @@ const Shop = () => {
         };
 
         fetchData(); // Call the fetchData function when the component mounts
-    }, []); // Empty dependency array to run the effect only once when the component mounts
+    }, []);  
 
     return (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5 xl:grid-cols-8 items-center justify-center p-5 my-5">

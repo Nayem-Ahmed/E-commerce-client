@@ -1,8 +1,8 @@
 import axiosPublice from "./axiosPublice"
 
 // Fetch allproducts from db
-export const getAllProducts = async (sorting) => {
-    const { data } = await axiosPublice(`/allproducts?sort=${sorting}`)
+export const getAllProducts = async (sorting,search) => {
+    const { data } = await axiosPublice(`/allproducts?sort=${sorting}&search=${search}`)
     return data;
 }
 // add cart post
