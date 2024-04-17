@@ -5,6 +5,7 @@ import Offers from '../Offers/Offers';
 import NewCollections from '../NewCollections/NewCollections';
 import NewsLetter from '../NewsLetter/NewsLetter';
 import CategoryGallery from '../../Components/CategoryGallary/CategoryGellary';
+import AboutUs from '../AboutUs';
  
 const Home = () => {
     return (
@@ -13,8 +14,9 @@ const Home = () => {
             <CategoryGallery></CategoryGallery>
             <Popular></Popular>
             <Offers></Offers>
-            <NewCollections></NewCollections>
+            {/* <NewCollections></NewCollections> */}
             <NewsLetter></NewsLetter>
+            <AboutUs></AboutUs>
             
         </div>
     );

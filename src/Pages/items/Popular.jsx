@@ -9,7 +9,7 @@ const Popular = () => {
             <hr className='h-1 md:w-1/3 mx-auto bg-gradient-to-l from-transparent via-red-500 mb-8' />
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 items-center justify-center">
                 {products?.map(product => (
-                    <Link key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden group">
+                    <Link to={`/women`} key={product.id} className="bg-white rounded-lg shadow-md overflow-hidden group">
                         <div className="overflow-hidden">
                             <img
                                 src={product?.image}
