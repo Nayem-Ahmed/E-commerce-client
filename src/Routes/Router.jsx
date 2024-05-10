@@ -37,7 +37,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/men_details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/allproducts/${params.id}`),
+                loader: ({ params }) => fetch(`https://ecommerce-server-gamma.vercel.app/allproducts/${params.id}`),
                 element: <Privetroute><MenDetails></MenDetails></Privetroute>,
             },
             {
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/women_details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/allproducts/${params.id}`),
+                loader: ({ params }) => fetch(`https://ecommerce-server-gamma.vercel.app/allproducts/${params.id}`),
                 element: <Privetroute><WomenDetails></WomenDetails></Privetroute>,
             },
             {
@@ -59,7 +59,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/kid_details/:id',
-                loader: ({ params }) => fetch(`http://localhost:5000/allproducts/${params.id}`),
+                loader: ({ params }) => fetch(`https://ecommerce-server-gamma.vercel.app/allproducts/${params.id}`),
                 element: <Privetroute><KidDetails></KidDetails></Privetroute>,
             },
             {

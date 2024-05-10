@@ -73,6 +73,7 @@ import { getAllProducts, getCartData } from '../../API/products';
 import { useQuery } from 'react-query';
 import { RiSearchLine } from 'react-icons/ri';
 import Loader from '../Loader/Loader';
+import Headroom from 'react-headroom';
 
 
 const Navbar = () => {
@@ -118,7 +119,9 @@ const Navbar = () => {
     }
 
     return (
-        <nav className="navbar z-50 relative shadow-sm block">
+        <Headroom className='relative z-40'>
+
+        <nav className="navbar z-50 relative  block">
             <div className="navbar-container">
                 <div className="navbar-logo">
                     <Link to="/"><img className='md:max-w-48 max-h-12' src={logo} alt="Logo" /></Link>
@@ -164,7 +167,7 @@ const Navbar = () => {
                         </div>
                         :
                         <Link to='/login' onClick={closeMenu} className="login-link">
-                            <button onClick={logOut} className="font-semibold md:py-2 py-1 px-2 flex items-center gap-1 md:px-5 rounded-3xl border border-black ">
+                            <button onClick={logOut} className="font-semibold hover:bg-black hover:text-white md:py-2 py-1 px-2 flex items-center gap-1 md:px-5 rounded-3xl border border-black ">
                                 <IoPersonOutline className='md:text-xl' /> LOGIN
                             </button>
                         </Link>
@@ -181,6 +184,7 @@ const Navbar = () => {
                 </div>
             </div>
         </nav>
+        </Headroom>
     );
 };
 
